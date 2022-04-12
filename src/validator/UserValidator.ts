@@ -17,6 +17,11 @@ class UserValidator {
             body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long')
         ]
     }
+    checkEmailProvided() {
+        return [
+            body('email').isEmail().withMessage('Email is not valid')
+        ]
+    }
 }
 
 export default new UserValidator();
