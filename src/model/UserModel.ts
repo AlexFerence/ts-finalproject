@@ -1,7 +1,7 @@
 import { Model, DataTypes } from "sequelize";
 import db from "../config/database.config";
 
-interface UserAttributes {
+interface UserType {
     uuid: string,
     studentID: string,
     firstName: string,
@@ -9,10 +9,9 @@ interface UserAttributes {
     email: string,
     password: string,
     userType: string,
-    token?: string
 }
 
-export class UserInstance extends Model<UserAttributes> { }
+export class UserInstance extends Model<UserType> { }
 
 UserInstance.init({
     uuid: {

@@ -42,6 +42,10 @@ authRouter.post("/signup",
             // hash password
             const hashedPassword = await bcrypt.hash(req.body.password, 8);
 
+            // Check if in the awaiting admins list
+
+            // Check if they are a TA or not
+
             // create user in database with new password and uuid
             const newUser = await UserInstance.create({ ...req.body, password: hashedPassword, uuid })
 
@@ -62,28 +66,19 @@ authRouter.post("/login",
             if (!user) {
                 return res.status(400).send({ error: "User does not exist" });
             }
-
             // get password from userInstance
             const password = await user.get("password");
-
             // compare password with hashed password
             const isPasswordValid = await bcrypt.compare(req.body.password, password);
-
-            if (!isPasswordValid) {
-                return res.status(400).send({ error: "Password is incorrect" });
-            }
+            if (!isPasswordValid) return res.status(400).send({ error: "Unable to login" });
 
             // get email from userInterface
             const uuid = await user.get("uuid");
             const email = await user.get("email");
 
-            // TODO: put in env variable
-            // token should expire in 30 days
-            // generate new token for the user
+            // generate new jwt for the user
             const token = jwt.sign({ uuid, email }, 'cs307', { expiresIn: '30d' });
 
-            // May not be nessecary
-            // update user document with new token
             // await user.update({ token });
             res.send({ user, token, msg: "Succesfully logged in" });
 
