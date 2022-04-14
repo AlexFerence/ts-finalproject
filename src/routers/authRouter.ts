@@ -57,6 +57,8 @@ authRouter.post("/signup",
     }
 );
 
+
+
 authRouter.post("/login",
     UserValidator.checkLoginUser(),
     Middleware.handleValidationError,
