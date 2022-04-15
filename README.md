@@ -1,5 +1,5 @@
 
-<h1>Signup Route</h1>
+<h2>Signup Route</h2>
 
 url:
 https://winter2022-comp307-group8.cs.mcgill.ca/signup
@@ -17,7 +17,7 @@ const loginParamData = {
 // @return
 const studentReturnData = {
     uuid: string,
-    studentID: string
+    studentID: string,
     firstName: string,
     lastName: string,
     email: string,
@@ -29,7 +29,7 @@ const studentReturnData = {
 Succesful signup: status = 200
 Bad signup: any other status
 
-##Login Route
+<h2>Login Route</h2>
 
 url:
 https://winter2022-comp307-group8.cs.mcgill.ca/login
@@ -44,7 +44,7 @@ const loginParamData = {
 // @return
 const studentReturnData = {
     uuid: string,
-    studentID: string
+    studentID: string,
     firstName: string,
     lastName: string,
     email: string,
