@@ -1,5 +1,5 @@
 
-##Signup Route
+<h1>Signup Route</h1>
 
 url:
 https://winter2022-comp307-group8.cs.mcgill.ca/signup
