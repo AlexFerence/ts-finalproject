@@ -1,16 +1,29 @@
 import express, { NextFunction, Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import { v4 as uuidv4 } from 'uuid';
-import { UserInstance } from '../model/UserModel';
+import { UserInstance, UserType } from '../model/UserModel';
 import UserValidator from '../validator/UserValidator';
 import Middleware from '../middleware/Middleware';
 import jwt from 'jsonwebtoken';
+import { StudentInfoInstance, StudentInfoType } from '../model/StudentInfoModel';
 
 const bcrypt = require('bcrypt');
 
 const authRouter = express.Router();
 
+interface StudentReturnType {
+    uuid: string,
+    studentID: string
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    token: string
+}
+
 // Singup route
+// @params: firstName, lastName, email, password, studentID
+// @return: token, user
 authRouter.post("/signup",
     UserValidator.checkCreateUser(),
     Middleware.handleValidationError,
@@ -27,7 +40,7 @@ authRouter.post("/signup",
             }
 
             // check if user already has same studentID
-            const userSameStudentID = await UserInstance.findOne({ where: { studentID: req.body.studentID } });
+            const userSameStudentID = await StudentInfoInstance.findOne({ where: { studentID: req.body.studentID } });
             if (userSameStudentID) {
                 return res.status(400).send({ error: "User already exists with same studentID" });
             }
@@ -35,7 +48,6 @@ authRouter.post("/signup",
             // get email from user
             const email = req.body.email;
 
-            // TODO: put in env variable
             // token should expire in 1 month
             const token = jwt.sign({ uuid, email }, 'cs307', { expiresIn: '30d' });
 
@@ -43,15 +55,37 @@ authRouter.post("/signup",
             const hashedPassword = await bcrypt.hash(req.body.password, 8);
 
             // Check if in the awaiting admins list
-
             // Check if they are a TA or not
 
-            // create user in database with new password and uuid
-            const newUser = await UserInstance.create({ ...req.body, password: hashedPassword, uuid })
+            // IF they are a STUDENT
+            // Create user in database with new password and uuid
+
+            const newUserData: UserType = {
+                uuid,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email,
+                password: hashedPassword
+            }
+
+            const newStudentInfoData: StudentInfoType = {
+                uuid,
+                studentID: req.body.studentID
+            }
+
+            const newUser = await UserInstance.create(newUserData);
+            const newStudentInfo = await StudentInfoInstance.create(newStudentInfoData);
+
+            const returnData: StudentReturnType = {
+                ...newUserData,
+                ...newStudentInfoData,
+                token
+            }
 
             // send response
-            return res.status(200).send({ newUser, token, msg: "Succesfully registered user" });
+            return res.status(200).send(returnData);
         } catch (e) {
+            console.error(e)
             return res.status(500).send({ msg: "fail to create", route: "/signup" })
         }
     }
@@ -73,14 +107,26 @@ authRouter.post("/login",
             if (!isPasswordValid) return res.status(400).send({ error: "Unable to login" });
 
             // get email from userInterface
-            const uuid = await user.get("uuid");
-            const email = await user.get("email");
+            const userDoc = user.get();
 
             // generate new jwt for the user
-            const token = jwt.sign({ uuid, email }, 'cs307', { expiresIn: '30d' });
+            const token = jwt.sign({ uuid: userDoc.uuid, email: userDoc.email }, 'cs307', { expiresIn: '30d' });
+
+            // get student info from StudentInfoInstance
+            const studentInfo = await StudentInfoInstance.findOne({ where: { uuid: userDoc.uuid } });
+            if (!studentInfo) {
+                return res.status(400).send({ error: "User does not exist" });
+            }
+            const studentInfoDoc = await studentInfo.get();
+
+            const returnData: StudentReturnType = {
+                ...userDoc,
+                ...studentInfoDoc,
+                token
+            }
 
             // await user.update({ token });
-            res.send({ user, token, msg: "Succesfully logged in" });
+            return res.send(returnData);
 
         } catch (e) {
             return res.status(500).send({ msg: "fail to login", route: "/login" })

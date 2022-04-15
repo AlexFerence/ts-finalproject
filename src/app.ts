@@ -1,10 +1,12 @@
 import express, { Request, Response } from 'express';
 import db from "./config/database.config"
 import authRouter from './routers/authRouter';
+import cors from 'cors';
 
 const app = express();
 const port = 3000;
 
+app.use(cors());
 app.use(express.json());
 
 db.sync().then(() => {
@@ -15,7 +17,7 @@ app.use(authRouter);
 
 app.get("/", (req: Request, res: Response) => {
     console.log('Someones here!')
-    return res.send("hello world");
+    return res.send("hi diego");
 })
 
 app.listen(port, () => {
