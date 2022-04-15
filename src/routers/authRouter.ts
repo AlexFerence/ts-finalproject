@@ -6,6 +6,7 @@ import UserValidator from '../validator/UserValidator';
 import Middleware from '../middleware/Middleware';
 import jwt from 'jsonwebtoken';
 import { StudentInfoInstance, StudentInfoType } from '../model/StudentInfoModel';
+import { SysopInfoInstance, SysopInfoType } from '../model/SysopInfoModel';
 
 const bcrypt = require('bcrypt');
 
@@ -13,12 +14,14 @@ const authRouter = express.Router();
 
 interface StudentReturnType {
     uuid: string,
-    studentID: string
     firstName: string,
     lastName: string,
     email: string,
     password: string,
+    studentData?: StudentInfoType
+    sysoData?: SysopInfoType
     token: string
+    userRoles: string
 }
 
 // Singup route
@@ -81,8 +84,9 @@ authRouter.post("/signup",
 
             const returnData: StudentReturnType = {
                 ...newUserData,
-                ...newStudentInfoData,
-                token
+                studentData: newStudentInfoData,
+                token,
+                userRoles: "student "
             }
 
             // send response
@@ -99,39 +103,49 @@ authRouter.post("/login",
     Middleware.handleValidationError,
     async (req: Request, res: Response) => {
         try {
+            // Retreive user
             const user = await UserInstance.findOne({ where: { email: req.body.email } });
             if (!user) {
                 return res.status(400).send({ error: "User does not exist" });
             }
-            // get password from userInstance
-            const password = await user.get("password");
-            // compare password with hashed password
-            const isPasswordValid = await bcrypt.compare(req.body.password, password);
-            if (!isPasswordValid) return res.status(400).send({ error: "Unable to login" });
 
             // get email from userInterface
             const userDoc = user.get();
 
-            console.log("userDoc");
-            console.log(userDoc);
+            // compare password with hashed password
+            const isPasswordValid = await bcrypt.compare(req.body.password, userDoc.password);
+            if (!isPasswordValid) return res.status(400).send({ error: "Unable to login" });
 
             // generate new jwt for the user
             const token = jwt.sign({ uuid: userDoc.uuid, email: userDoc.email }, 'cs307', { expiresIn: '30d' });
 
-            // get student info from StudentInfoInstance
+            // String to keep track of user roles
+            let userRoles = "";
+
+            // Make sure to override userRoles later
+            let returnData: StudentReturnType = { ...userDoc, token, userRoles: "" };
+
+            // Check and retrieve student info
             const studentInfo = await StudentInfoInstance.findOne({ where: { uuid: userDoc.uuid } });
-            if (!studentInfo) {
-                return res.status(400).send({ error: "User does not exist" });
-            }
-            const studentInfoDoc = await studentInfo.get();
-
-            const returnData: StudentReturnType = {
-                ...userDoc,
-                ...studentInfoDoc,
-                token
+            if (studentInfo) {
+                const studentInfoDoc = await studentInfo.get();
+                returnData = {
+                    ...returnData,
+                    studentData: studentInfoDoc,
+                }
+                userRoles = userRoles + "student ";
             }
 
-            // await user.update({ token });
+            // Check and retrieve sysop info
+            const sysopInfo = await SysopInfoInstance.findOne({ where: { uuid: userDoc.uuid } });
+            if (sysopInfo) {
+                const sysopInfoDoc = await sysopInfo.get();
+                userRoles = userRoles + "sysop ";
+            }
+
+            // override userRoles
+            returnData = { ...returnData, userRoles: userRoles.trim() }
+
             return res.send(returnData);
 
         } catch (e) {
@@ -178,4 +192,33 @@ authRouter.get("/getallusers",
     }
 )
 
+authRouter.post("/newsysop",
+    UserValidator.checkEmailProvided(),
+    Middleware.handleValidationError,
+    async (req: Request, res: Response) => {
+        try {
+            console.log("Adding new sysop...");
+            // get user by email
+            const user = await UserInstance.findOne({ where: { email: req.body.email } });
+            if (!user) {
+                return res.status(400).send({ error: "User does not exist" });
+            }
+
+            // get uuid from user
+            const userDoc = await user.get();
+
+            // create new entry to sysopInfoInstance
+            const newSysopInfoData: SysopInfoType = {
+                uuid: userDoc.uuid
+            }
+
+            const newSysopInfo = await SysopInfoInstance.create(newSysopInfoData);
+
+            // send response
+            return res.status(200).send({ newSysopInfo, msg: "Succesfully added new sysop" });
+        } catch (e) {
+            return res.status(500).send({ msg: "failed to add new sysop", route: "/newsysop" })
+        }
+    }
+);
 export default authRouter;
