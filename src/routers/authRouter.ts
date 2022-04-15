@@ -33,11 +33,14 @@ authRouter.post("/signup",
             // generate unique id
             const uuid = uuidv4();
 
+
             // check if user already exists with same email
             const userSameEmail = await UserInstance.findOne({ where: { email: req.body.email } });
             if (userSameEmail) {
                 return res.status(400).send({ error: "User already exists with same email" });
             }
+
+
 
             // check if user already has same studentID
             const userSameStudentID = await StudentInfoInstance.findOne({ where: { studentID: req.body.studentID } });
@@ -86,7 +89,7 @@ authRouter.post("/signup",
             return res.status(200).send(returnData);
         } catch (e) {
             console.error(e)
-            return res.status(500).send({ msg: "fail to create", route: "/signup" })
+            return res.status(500).send({ msg: "caught error: failed to create", route: "/signup" })
         }
     }
 );
@@ -108,6 +111,9 @@ authRouter.post("/login",
 
             // get email from userInterface
             const userDoc = user.get();
+
+            console.log("userDoc");
+            console.log(userDoc);
 
             // generate new jwt for the user
             const token = jwt.sign({ uuid: userDoc.uuid, email: userDoc.email }, 'cs307', { expiresIn: '30d' });
