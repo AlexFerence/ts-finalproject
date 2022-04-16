@@ -18,6 +18,7 @@ db.sync().then(() => {
 app.use(authRouter);
 app.use(profRouter);
 app.use(studentRouter);
+app.use(profRouter);
 
 app.get("/", (req: Request, res: Response) => {
     console.log('Someones here!')

@@ -1,10 +1,13 @@
 import express, { Request, Response } from 'express';
+import { QueryTypes } from 'sequelize';
+import db from '../config/database.config';
 import Middleware from '../middleware/Middleware';
 import { ProfessorInfoInstance, ProfessorInfoType } from '../model/ProfessorInfoModel';
 import ProfValidator from '../validator/ProfValidator';
 
 const profRouter = express.Router();
 
+// add a professor to the database
 profRouter.post("/prof/add",
     ProfValidator.checkCreateProf(),
     Middleware.handleValidationError,
@@ -16,7 +19,7 @@ profRouter.post("/prof/add",
                 faculty: req.body.faculty,
                 department: req.body.department
             });
-            return res.status(200).send({ prof: newProf, message: "Prof added" });
+            return res.status(200).send(newProf);
         }
         catch (err) {
             console.error(err);
@@ -24,5 +27,49 @@ profRouter.post("/prof/add",
         }
     }
 );
+
+profRouter.delete("/prof/delete/:email",
+    async (req: Request, res: Response) => {
+        try {
+            // TODO put in authentication   
+            console.log("Deleting prof...");
+            const prof = await ProfessorInfoInstance.findOne({ where: { email: req.params.email } });
+            if (prof) {
+                await prof.destroy();
+                return res.status(200).send({ message: "Prof deleted" });
+            }
+            else {
+                return res.status(400).send({ error: "Prof not found" });
+            }
+        }
+        catch (err) {
+            console.error(err);
+            return res.status(400).send({ error: err });
+        }
+    }
+);
+
+
+// Get all professors
+profRouter.get("/prof/all",
+    async (req: Request, res: Response) => {
+        try {
+            console.log("Getting all profs...");
+            const profs = await db.query(
+                `SELECT * FROM users U, professorinfo P WHERE U.email = P.email`,
+                {
+                    type: QueryTypes.SELECT,
+                    mapToModel: true,
+                }
+            );
+            return res.status(200).send({ profs });
+        }
+        catch (err) {
+            console.error(err);
+            return res.status(400).send({ error: err });
+        }
+    }
+);
+
 
 export default profRouter;
