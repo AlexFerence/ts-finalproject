@@ -2,7 +2,7 @@ import { Model, DataTypes } from "sequelize";
 import db from "../config/database.config";
 
 export interface SysopInfoType {
-    uuid: string
+    uuid: string,
 }
 
 export class SysopInfoInstance extends Model<SysopInfoType> { }
@@ -13,7 +13,7 @@ SysopInfoInstance.init({
         primaryKey: true,
         allowNull: false,
         unique: true
-    },
+    }
 }, {
     sequelize: db,
     tableName: 'sysopinfo'

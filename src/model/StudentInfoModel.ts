@@ -3,7 +3,8 @@ import db from "../config/database.config";
 
 export interface StudentInfoType {
     uuid: string,
-    studentID: string
+    studentID: string,
+
 }
 
 export class StudentInfoInstance extends Model<StudentInfoType> { }
@@ -19,7 +20,7 @@ StudentInfoInstance.init({
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
-    },
+    }
 }, {
     sequelize: db,
     tableName: 'studentinfo'
