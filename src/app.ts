@@ -3,6 +3,7 @@ import db from "./config/database.config"
 import authRouter from './routers/authRouter';
 import cors from 'cors';
 import profRouter from './routers/profRouter';
+import studentRouter from './routers/studentRouter';
 
 const app = express();
 const port = 3000;
@@ -16,6 +17,7 @@ db.sync().then(() => {
 
 app.use(authRouter);
 app.use(profRouter);
+app.use(studentRouter);
 
 app.get("/", (req: Request, res: Response) => {
     console.log('Someones here!')

@@ -16,7 +16,7 @@ profRouter.post("/prof/add",
                 faculty: req.body.faculty,
                 department: req.body.department
             });
-            return res.status(200).send({ message: "Prof added" });
+            return res.status(200).send({ prof: newProf, message: "Prof added" });
         }
         catch (err) {
             console.error(err);

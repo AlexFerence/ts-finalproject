@@ -44,7 +44,7 @@ const loginParamData = {
 // @return
 const studentReturnData = {
     uuid: string,
-    studentID: string
+    studentID: string,
 -    firstName: string,
     lastName: string,
     email: string,
