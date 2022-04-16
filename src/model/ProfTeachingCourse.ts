@@ -6,7 +6,7 @@ export interface ProfTeachingCourse {
     courseID: string,
 }
 
-class ProfTeachingCourseInstance extends Model<ProfTeachingCourse> { }
+export class ProfTeachingCourseInstance extends Model<ProfTeachingCourse> { }
 
 ProfTeachingCourseInstance.init({
     profEmail: {

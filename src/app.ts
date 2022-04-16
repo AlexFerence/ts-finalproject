@@ -4,6 +4,7 @@ import authRouter from './routers/authRouter';
 import cors from 'cors';
 import profRouter from './routers/profRouter';
 import studentRouter from './routers/studentRouter';
+import courseRouter from './routers/courseRouter';
 
 const app = express();
 const port = 3000;
@@ -19,6 +20,7 @@ app.use(authRouter);
 app.use(profRouter);
 app.use(studentRouter);
 app.use(profRouter);
+app.use(courseRouter);
 
 app.get("/", (req: Request, res: Response) => {
     console.log('Someones here!')

@@ -7,6 +7,7 @@ import Middleware from '../middleware/Middleware';
 import jwt from 'jsonwebtoken';
 import { StudentInfoInstance, StudentInfoType } from '../model/StudentInfoModel';
 import { SysopInfoInstance, SysopInfoType } from '../model/SysopInfoModel';
+import { ProfessorInfoInstance, ProfessorInfoType } from '../model/ProfessorInfoModel';
 
 const bcrypt = require('bcrypt');
 
@@ -19,6 +20,7 @@ interface StudentReturnType {
     email: string,
     password: string,
     studentData?: StudentInfoType
+    profData?: ProfessorInfoType
     sysoData?: SysopInfoType
     token: string
     userRoles: string
@@ -132,6 +134,21 @@ authRouter.post("/login",
                 }
                 userRoles = userRoles + "student ";
             }
+
+            // Check and retreive prof info
+            const profInfo = await ProfessorInfoInstance.findOne({ where: { email: userDoc.email } });
+            if (profInfo) {
+                const profInfoDoc = await profInfo.get();
+                returnData = {
+                    ...returnData,
+                    profData: profInfoDoc,
+                }
+                userRoles = userRoles + "prof ";
+            }
+
+            // TA Admin
+
+            // TA
 
             // Check and retrieve sysop info
             const sysopInfo = await SysopInfoInstance.findOne({ where: { uuid: userDoc.uuid } });

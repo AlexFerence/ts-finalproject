@@ -2,7 +2,9 @@ import express, { Request, Response } from 'express';
 import { QueryTypes } from 'sequelize';
 import db from '../config/database.config';
 import Middleware from '../middleware/Middleware';
+import { CourseInstance } from '../model/CourseModel';
 import { ProfessorInfoInstance, ProfessorInfoType } from '../model/ProfessorInfoModel';
+import { ProfTeachingCourseInstance } from '../model/ProfTeachingCourse';
 import ProfValidator from '../validator/ProfValidator';
 
 const profRouter = express.Router();
@@ -49,7 +51,6 @@ profRouter.delete("/prof/delete/:email",
     }
 );
 
-
 // Get all professors
 profRouter.get("/prof/all",
     async (req: Request, res: Response) => {
@@ -70,6 +71,37 @@ profRouter.get("/prof/all",
         }
     }
 );
+
+// Assign prof to a course
+profRouter.post("/prof/assignbyemail",
+    ProfValidator.checkAssignProf(),
+    Middleware.handleValidationError,
+    async (req: Request, res: Response) => {
+        try {
+            console.log("Assigning prof...");
+            const prof = await ProfessorInfoInstance.findOne({ where: { email: req.body.profEmail } });
+            if (!prof) {
+                return res.status(400).send({ error: "Cannot assign: Prof not found" });
+            }
+
+            const course = await CourseInstance.findOne({ where: { courseID: req.body.courseID } });
+            if (!course) {
+                return res.status(400).send({ error: "Cannot assign: Course not found" });
+            }
+
+            await ProfTeachingCourseInstance.create({
+                profEmail: req.body.profEmail,
+                courseID: req.body.courseID
+            });
+            return res.status(200).send({ message: "Prof assigned" });
+        }
+        catch (err) {
+            console.error(err);
+            return res.status(400).send({ error: err });
+        }
+    }
+);
+
 
 
 export default profRouter;

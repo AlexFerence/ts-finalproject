@@ -4,8 +4,14 @@ class ProfValidator {
     checkCreateProf() {
         return [
             body('email').isEmail().withMessage('Email is not valid'),
-            body('faculty').isLength({ min: 1 }).withMessage('Faculty is required'),
-            body('department').isLength({ min: 1 }).withMessage('Department is required')
+            body('faculty').isString().withMessage('Faculty is not valid'),
+            body('department').isString().withMessage('Department is not valid'),
+        ]
+    }
+    checkAssignProf() {
+        return [
+            body('profEmail').isEmail().withMessage('Email is not valid'),
+            body('courseID').isUUID(4).withMessage('Course ID is not valid'),
         ]
     }
 }

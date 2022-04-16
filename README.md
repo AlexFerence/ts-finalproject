@@ -124,3 +124,31 @@ const return_data = {
 Succesful signup: status = 200
 Bad signup: any other status
 
+<h2>Assign Prof to Course</h2>
+GET:
+https://winter2022-comp307-group8.cs.mcgill.ca/prof/all
+
+```typescript
+//@params
+const req.body = {
+    profEmail: string,
+    courseID: string
+}
+
+// @return
+const return_data = {
+    // Returns list of type Professor
+    profs: Professor[{
+        uuid: string,
+        firstName: string,
+        lastName: string,
+        email: string,
+        faculty: string,
+        department: string
+
+    }]
+}
+```
+Succesful signup: status = 200
+Bad signup: any other status
+

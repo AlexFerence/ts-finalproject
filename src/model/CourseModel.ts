@@ -12,6 +12,7 @@ export interface CourseType {
     term: Term,
     year: string,
     courseNumber: string,
+    courseCode: string,
     courseName: string,
 }
 
@@ -37,6 +38,10 @@ CourseInstance.init({
         allowNull: false
     },
     courseName: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    courseCode: {
         type: DataTypes.STRING,
         allowNull: false
     }

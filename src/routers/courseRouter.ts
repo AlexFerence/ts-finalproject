@@ -16,6 +16,7 @@ courseRouter.post("/course/add",
                 term: req.body.term,
                 year: req.body.year,
                 courseNumber: req.body.courseNumber,
+                courseCode: req.body.courseCode,
                 courseName: req.body.courseName
             });
             return res.status(200).send(newCourse);
@@ -41,5 +42,7 @@ courseRouter.get("/course/all",
         }
     }
 );
+
+export default courseRouter;
 
 

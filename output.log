@@ -1,0 +1,390 @@
+App running on port 3000
+Connected to db
+Getting all users...
+Getting all users...
+Getting all users...
+Getting all users...
+Getting all users...
+Getting all users...
+Getting all profs...
+Getting all profs...
+Getting all profs...
+Getting all profs...
+Adding prof...
+Getting all profs...
+Getting all profs...
+Getting all profs...
+Getting all profs...
+Signing up...
+Getting all profs...
+Getting all profs...
+Adding prof...
+Getting all profs...
+Getting all profs...
+Getting all profs...
+Getting all profs...
+Deleting prof...
+Getting all profs...
+Getting all profs...
+Adding prof...
+Getting all profs...
+Deleting prof...
+Getting all profs...
+Adding prof...
+Getting all profs...
+Deleting prof...
+Getting all profs...
+Getting all profs...
+Getting all profs...
+Adding prof...
+Getting all profs...
+Deleting prof...
+Getting all profs...
+Adding prof...
+Getting all profs...
+Deleting prof...
+Getting all profs...
+Adding prof...
+Getting all profs...
+Getting all profs...
+Getting all profs...
+[
+  {
+    uuid: 'c7f17ddd-f14f-4707-9780-df74cfffce6f',
+    firstName: 'Alex',
+    lastName: 'Ference',
+    email: 'alex.ference@mail.mcgill.ca',
+    password: '$2b$08$hgf0Q7RdAHjjot8m7gsv4uJt6rcksP/ULop38gcj58.PZgAuu2F.O',
+    createdAt: '2022-04-16 03:20:48.833 +00:00',
+    updatedAt: '2022-04-16 03:20:48.833 +00:00',
+    studentID: '260824824'
+  },
+  {
+    uuid: '7b55f1b5-3fbd-4734-b5f8-0dcc3068d56a',
+    firstName: 'Blair',
+    lastName: 'Ference',
+    email: 'blair.ference@mail.mcgill.ca',
+    password: '$2b$08$jH9lgDeYM8S172SWXF..ge0sZz9Pu0SCVKkU2uA2qh3SREKjY/QiC',
+    createdAt: '2022-04-16 03:20:53.045 +00:00',
+    updatedAt: '2022-04-16 03:20:53.045 +00:00',
+    studentID: '2608248501'
+  }
+]
+[
+  {
+    uuid: 'c7f17ddd-f14f-4707-9780-df74cfffce6f',
+    firstName: 'Alex',
+    lastName: 'Ference',
+    email: 'alex.ference@mail.mcgill.ca',
+    password: '$2b$08$hgf0Q7RdAHjjot8m7gsv4uJt6rcksP/ULop38gcj58.PZgAuu2F.O',
+    createdAt: '2022-04-16 03:20:48.833 +00:00',
+    updatedAt: '2022-04-16 03:20:48.833 +00:00',
+    studentID: '260824824'
+  },
+  {
+    uuid: '7b55f1b5-3fbd-4734-b5f8-0dcc3068d56a',
+    firstName: 'Blair',
+    lastName: 'Ference',
+    email: 'blair.ference@mail.mcgill.ca',
+    password: '$2b$08$jH9lgDeYM8S172SWXF..ge0sZz9Pu0SCVKkU2uA2qh3SREKjY/QiC',
+    createdAt: '2022-04-16 03:20:53.045 +00:00',
+    updatedAt: '2022-04-16 03:20:53.045 +00:00',
+    studentID: '2608248501'
+  }
+]
+[
+  {
+    uuid: 'c7f17ddd-f14f-4707-9780-df74cfffce6f',
+    firstName: 'Alex',
+    lastName: 'Ference',
+    email: 'alex.ference@mail.mcgill.ca',
+    password: '$2b$08$hgf0Q7RdAHjjot8m7gsv4uJt6rcksP/ULop38gcj58.PZgAuu2F.O',
+    createdAt: '2022-04-16 03:20:48.833 +00:00',
+    updatedAt: '2022-04-16 03:20:48.833 +00:00',
+    studentID: '260824824'
+  },
+  {
+    uuid: '7b55f1b5-3fbd-4734-b5f8-0dcc3068d56a',
+    firstName: 'Blair',
+    lastName: 'Ference',
+    email: 'blair.ference@mail.mcgill.ca',
+    password: '$2b$08$jH9lgDeYM8S172SWXF..ge0sZz9Pu0SCVKkU2uA2qh3SREKjY/QiC',
+    createdAt: '2022-04-16 03:20:53.045 +00:00',
+    updatedAt: '2022-04-16 03:20:53.045 +00:00',
+    studentID: '2608248501'
+  }
+]
+[
+  {
+    uuid: 'c7f17ddd-f14f-4707-9780-df74cfffce6f',
+    firstName: 'Alex',
+    lastName: 'Ference',
+    email: 'alex.ference@mail.mcgill.ca',
+    password: '$2b$08$hgf0Q7RdAHjjot8m7gsv4uJt6rcksP/ULop38gcj58.PZgAuu2F.O',
+    createdAt: '2022-04-16 03:20:48.833 +00:00',
+    updatedAt: '2022-04-16 03:20:48.833 +00:00',
+    studentID: '260824824'
+  },
+  {
+    uuid: '7b55f1b5-3fbd-4734-b5f8-0dcc3068d56a',
+    firstName: 'Blair',
+    lastName: 'Ference',
+    email: 'blair.ference@mail.mcgill.ca',
+    password: '$2b$08$jH9lgDeYM8S172SWXF..ge0sZz9Pu0SCVKkU2uA2qh3SREKjY/QiC',
+    createdAt: '2022-04-16 03:20:53.045 +00:00',
+    updatedAt: '2022-04-16 03:20:53.045 +00:00',
+    studentID: '2608248501'
+  }
+]
+Getting all profs...
+[
+  {
+    uuid: 'c7f17ddd-f14f-4707-9780-df74cfffce6f',
+    firstName: 'Alex',
+    lastName: 'Ference',
+    email: 'alex.ference@mail.mcgill.ca',
+    password: '$2b$08$hgf0Q7RdAHjjot8m7gsv4uJt6rcksP/ULop38gcj58.PZgAuu2F.O',
+    createdAt: '2022-04-16 03:20:48.833 +00:00',
+    updatedAt: '2022-04-16 03:20:48.833 +00:00',
+    studentID: '260824824'
+  },
+  {
+    uuid: '7b55f1b5-3fbd-4734-b5f8-0dcc3068d56a',
+    firstName: 'Blair',
+    lastName: 'Ference',
+    email: 'blair.ference@mail.mcgill.ca',
+    password: '$2b$08$jH9lgDeYM8S172SWXF..ge0sZz9Pu0SCVKkU2uA2qh3SREKjY/QiC',
+    createdAt: '2022-04-16 03:20:53.045 +00:00',
+    updatedAt: '2022-04-16 03:20:53.045 +00:00',
+    studentID: '2608248501'
+  }
+]
+Getting all profs...
+[
+  {
+    uuid: 'c7f17ddd-f14f-4707-9780-df74cfffce6f',
+    firstName: 'Alex',
+    lastName: 'Ference',
+    email: 'alex.ference@mail.mcgill.ca',
+    password: '$2b$08$hgf0Q7RdAHjjot8m7gsv4uJt6rcksP/ULop38gcj58.PZgAuu2F.O',
+    createdAt: '2022-04-16 03:20:48.833 +00:00',
+    updatedAt: '2022-04-16 03:20:48.833 +00:00',
+    studentID: '260824824'
+  },
+  {
+    uuid: '7b55f1b5-3fbd-4734-b5f8-0dcc3068d56a',
+    firstName: 'Blair',
+    lastName: 'Ference',
+    email: 'blair.ference@mail.mcgill.ca',
+    password: '$2b$08$jH9lgDeYM8S172SWXF..ge0sZz9Pu0SCVKkU2uA2qh3SREKjY/QiC',
+    createdAt: '2022-04-16 03:20:53.045 +00:00',
+    updatedAt: '2022-04-16 03:20:53.045 +00:00',
+    studentID: '2608248501'
+  }
+]
+Getting all profs...
+[
+  {
+    uuid: 'c7f17ddd-f14f-4707-9780-df74cfffce6f',
+    firstName: 'Alex',
+    lastName: 'Ference',
+    email: 'alex.ference@mail.mcgill.ca',
+    password: '$2b$08$hgf0Q7RdAHjjot8m7gsv4uJt6rcksP/ULop38gcj58.PZgAuu2F.O',
+    createdAt: '2022-04-16 03:20:48.833 +00:00',
+    updatedAt: '2022-04-16 03:20:48.833 +00:00',
+    studentID: '260824824'
+  },
+  {
+    uuid: '7b55f1b5-3fbd-4734-b5f8-0dcc3068d56a',
+    firstName: 'Blair',
+    lastName: 'Ference',
+    email: 'blair.ference@mail.mcgill.ca',
+    password: '$2b$08$jH9lgDeYM8S172SWXF..ge0sZz9Pu0SCVKkU2uA2qh3SREKjY/QiC',
+    createdAt: '2022-04-16 03:20:53.045 +00:00',
+    updatedAt: '2022-04-16 03:20:53.045 +00:00',
+    studentID: '2608248501'
+  }
+]
+Getting all profs...
+Getting all profs...
+[
+  {
+    uuid: 'c7f17ddd-f14f-4707-9780-df74cfffce6f',
+    firstName: 'Alex',
+    lastName: 'Ference',
+    email: 'alex.ference@mail.mcgill.ca',
+    password: '$2b$08$hgf0Q7RdAHjjot8m7gsv4uJt6rcksP/ULop38gcj58.PZgAuu2F.O',
+    createdAt: '2022-04-16 03:20:48.833 +00:00',
+    updatedAt: '2022-04-16 03:20:48.833 +00:00',
+    studentID: '260824824'
+  },
+  {
+    uuid: '7b55f1b5-3fbd-4734-b5f8-0dcc3068d56a',
+    firstName: 'Blair',
+    lastName: 'Ference',
+    email: 'blair.ference@mail.mcgill.ca',
+    password: '$2b$08$jH9lgDeYM8S172SWXF..ge0sZz9Pu0SCVKkU2uA2qh3SREKjY/QiC',
+    createdAt: '2022-04-16 03:20:53.045 +00:00',
+    updatedAt: '2022-04-16 03:20:53.045 +00:00',
+    studentID: '2608248501'
+  }
+]
+Getting all profs...
+[
+  {
+    uuid: 'c7f17ddd-f14f-4707-9780-df74cfffce6f',
+    firstName: 'Alex',
+    lastName: 'Ference',
+    email: 'alex.ference@mail.mcgill.ca',
+    password: '$2b$08$hgf0Q7RdAHjjot8m7gsv4uJt6rcksP/ULop38gcj58.PZgAuu2F.O',
+    createdAt: '2022-04-16 03:20:48.833 +00:00',
+    updatedAt: '2022-04-16 03:20:48.833 +00:00',
+    studentID: '260824824'
+  },
+  {
+    uuid: '7b55f1b5-3fbd-4734-b5f8-0dcc3068d56a',
+    firstName: 'Blair',
+    lastName: 'Ference',
+    email: 'blair.ference@mail.mcgill.ca',
+    password: '$2b$08$jH9lgDeYM8S172SWXF..ge0sZz9Pu0SCVKkU2uA2qh3SREKjY/QiC',
+    createdAt: '2022-04-16 03:20:53.045 +00:00',
+    updatedAt: '2022-04-16 03:20:53.045 +00:00',
+    studentID: '2608248501'
+  }
+]
+Getting all profs...
+[
+  {
+    uuid: 'c7f17ddd-f14f-4707-9780-df74cfffce6f',
+    firstName: 'Alex',
+    lastName: 'Ference',
+    email: 'alex.ference@mail.mcgill.ca',
+    password: '$2b$08$hgf0Q7RdAHjjot8m7gsv4uJt6rcksP/ULop38gcj58.PZgAuu2F.O',
+    createdAt: '2022-04-16 03:20:48.833 +00:00',
+    updatedAt: '2022-04-16 03:20:48.833 +00:00',
+    studentID: '260824824'
+  },
+  {
+    uuid: '7b55f1b5-3fbd-4734-b5f8-0dcc3068d56a',
+    firstName: 'Blair',
+    lastName: 'Ference',
+    email: 'blair.ference@mail.mcgill.ca',
+    password: '$2b$08$jH9lgDeYM8S172SWXF..ge0sZz9Pu0SCVKkU2uA2qh3SREKjY/QiC',
+    createdAt: '2022-04-16 03:20:53.045 +00:00',
+    updatedAt: '2022-04-16 03:20:53.045 +00:00',
+    studentID: '2608248501'
+  }
+]
+Getting all profs...
+[
+  {
+    uuid: 'c7f17ddd-f14f-4707-9780-df74cfffce6f',
+    firstName: 'Alex',
+    lastName: 'Ference',
+    email: 'alex.ference@mail.mcgill.ca',
+    password: '$2b$08$hgf0Q7RdAHjjot8m7gsv4uJt6rcksP/ULop38gcj58.PZgAuu2F.O',
+    createdAt: '2022-04-16 03:20:48.833 +00:00',
+    updatedAt: '2022-04-16 03:20:48.833 +00:00',
+    studentID: '260824824'
+  },
+  {
+    uuid: '7b55f1b5-3fbd-4734-b5f8-0dcc3068d56a',
+    firstName: 'Blair',
+    lastName: 'Ference',
+    email: 'blair.ference@mail.mcgill.ca',
+    password: '$2b$08$jH9lgDeYM8S172SWXF..ge0sZz9Pu0SCVKkU2uA2qh3SREKjY/QiC',
+    createdAt: '2022-04-16 03:20:53.045 +00:00',
+    updatedAt: '2022-04-16 03:20:53.045 +00:00',
+    studentID: '2608248501'
+  }
+]
+Getting all profs...
+[
+  {
+    uuid: 'c7f17ddd-f14f-4707-9780-df74cfffce6f',
+    firstName: 'Alex',
+    lastName: 'Ference',
+    email: 'alex.ference@mail.mcgill.ca',
+    password: '$2b$08$hgf0Q7RdAHjjot8m7gsv4uJt6rcksP/ULop38gcj58.PZgAuu2F.O',
+    createdAt: '2022-04-16 03:20:48.833 +00:00',
+    updatedAt: '2022-04-16 03:20:48.833 +00:00',
+    studentID: '260824824'
+  },
+  {
+    uuid: '7b55f1b5-3fbd-4734-b5f8-0dcc3068d56a',
+    firstName: 'Blair',
+    lastName: 'Ference',
+    email: 'blair.ference@mail.mcgill.ca',
+    password: '$2b$08$jH9lgDeYM8S172SWXF..ge0sZz9Pu0SCVKkU2uA2qh3SREKjY/QiC',
+    createdAt: '2022-04-16 03:20:53.045 +00:00',
+    updatedAt: '2022-04-16 03:20:53.045 +00:00',
+    studentID: '2608248501'
+  }
+]
+Getting all profs...
+[
+  {
+    uuid: 'c7f17ddd-f14f-4707-9780-df74cfffce6f',
+    firstName: 'Alex',
+    lastName: 'Ference',
+    email: 'alex.ference@mail.mcgill.ca',
+    password: '$2b$08$hgf0Q7RdAHjjot8m7gsv4uJt6rcksP/ULop38gcj58.PZgAuu2F.O',
+    createdAt: '2022-04-16 03:20:48.833 +00:00',
+    updatedAt: '2022-04-16 03:20:48.833 +00:00',
+    studentID: '260824824'
+  },
+  {
+    uuid: '7b55f1b5-3fbd-4734-b5f8-0dcc3068d56a',
+    firstName: 'Blair',
+    lastName: 'Ference',
+    email: 'blair.ference@mail.mcgill.ca',
+    password: '$2b$08$jH9lgDeYM8S172SWXF..ge0sZz9Pu0SCVKkU2uA2qh3SREKjY/QiC',
+    createdAt: '2022-04-16 03:20:53.045 +00:00',
+    updatedAt: '2022-04-16 03:20:53.045 +00:00',
+    studentID: '2608248501'
+  }
+]
+[
+  {
+    uuid: 'c7f17ddd-f14f-4707-9780-df74cfffce6f',
+    firstName: 'Alex',
+    lastName: 'Ference',
+    email: 'alex.ference@mail.mcgill.ca',
+    password: '$2b$08$hgf0Q7RdAHjjot8m7gsv4uJt6rcksP/ULop38gcj58.PZgAuu2F.O',
+    createdAt: '2022-04-16 03:20:48.833 +00:00',
+    updatedAt: '2022-04-16 03:20:48.833 +00:00',
+    studentID: '260824824'
+  },
+  {
+    uuid: '7b55f1b5-3fbd-4734-b5f8-0dcc3068d56a',
+    firstName: 'Blair',
+    lastName: 'Ference',
+    email: 'blair.ference@mail.mcgill.ca',
+    password: '$2b$08$jH9lgDeYM8S172SWXF..ge0sZz9Pu0SCVKkU2uA2qh3SREKjY/QiC',
+    createdAt: '2022-04-16 03:20:53.045 +00:00',
+    updatedAt: '2022-04-16 03:20:53.045 +00:00',
+    studentID: '2608248501'
+  }
+]
+[
+  {
+    uuid: 'c7f17ddd-f14f-4707-9780-df74cfffce6f',
+    firstName: 'Alex',
+    lastName: 'Ference',
+    email: 'alex.ference@mail.mcgill.ca',
+    password: '$2b$08$hgf0Q7RdAHjjot8m7gsv4uJt6rcksP/ULop38gcj58.PZgAuu2F.O',
+    createdAt: '2022-04-16 03:20:48.833 +00:00',
+    updatedAt: '2022-04-16 03:20:48.833 +00:00',
+    studentID: '260824824'
+  },
+  {
+    uuid: '7b55f1b5-3fbd-4734-b5f8-0dcc3068d56a',
+    firstName: 'Blair',
+    lastName: 'Ference',
+    email: 'blair.ference@mail.mcgill.ca',
+    password: '$2b$08$jH9lgDeYM8S172SWXF..ge0sZz9Pu0SCVKkU2uA2qh3SREKjY/QiC',
+    createdAt: '2022-04-16 03:20:53.045 +00:00',
+    updatedAt: '2022-04-16 03:20:53.045 +00:00',
+    studentID: '2608248501'
+  }
+]
