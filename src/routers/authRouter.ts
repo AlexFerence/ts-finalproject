@@ -36,14 +36,11 @@ authRouter.post("/signup",
             // generate unique id
             const uuid = uuidv4();
 
-
             // check if user already exists with same email
             const userSameEmail = await UserInstance.findOne({ where: { email: req.body.email } });
             if (userSameEmail) {
                 return res.status(400).send({ error: "User already exists with same email" });
             }
-
-
 
             // check if user already has same studentID
             const userSameStudentID = await StudentInfoInstance.findOne({ where: { studentID: req.body.studentID } });

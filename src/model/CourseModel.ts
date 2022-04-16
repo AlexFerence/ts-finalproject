@@ -19,7 +19,7 @@ export class CourseInstance extends Model<CourseType> { }
 
 CourseInstance.init({
     courseID: {
-        type: DataTypes.STRING,
+        type: DataTypes.UUIDV4,
         primaryKey: true,
         allowNull: false,
         unique: true
@@ -44,5 +44,3 @@ CourseInstance.init({
     sequelize: db,
     tableName: "courses"
 });
-
-
