@@ -79,18 +79,8 @@ profRouter.post("/prof/assignbyemail",
     async (req: Request, res: Response) => {
         try {
             console.log("Assigning prof...");
-            const prof = await ProfessorInfoInstance.findOne({ where: { email: req.body.profEmail } });
-            if (!prof) {
-                return res.status(400).send({ error: "Cannot assign: Prof not found" });
-            }
-
-            const course = await CourseInstance.findOne({ where: { courseID: req.body.courseID } });
-            if (!course) {
-                return res.status(400).send({ error: "Cannot assign: Course not found" });
-            }
-
-            await ProfTeachingCourseInstance.create({
-                profEmail: req.body.profEmail,
+            const creatingDoc = await ProfTeachingCourseInstance.create({
+                email: req.body.email,
                 courseID: req.body.courseID
             });
             return res.status(200).send({ message: "Prof assigned" });
@@ -101,6 +91,58 @@ profRouter.post("/prof/assignbyemail",
         }
     }
 );
+
+// Unassign a prof from a course
+profRouter.post("/prof/unassignbyemail",
+    ProfValidator.checkAssignProf(),
+    Middleware.handleValidationError,
+    async (req: Request, res: Response) => {
+        try {
+            console.log("Unassigning prof...");
+            const deletingDoc = await ProfTeachingCourseInstance.findOne({ where: { email: req.body.email, courseID: req.body.courseID } });
+            if (deletingDoc) {
+                await deletingDoc.destroy();
+                return res.status(200).send({ message: "Prof unassigned" });
+            }
+            else {
+                return res.status(400).send({ error: "Prof not found" });
+            }
+        }
+        catch (err) {
+            console.error(err);
+            return res.status(400).send({ error: err });
+        }
+    }
+)
+
+// Route to retreive all courses a prof teaches
+profRouter.get("/prof/courses/:email",
+    async (req: Request, res: Response) => {
+        try {
+            console.log("Getting courses taught by " + req.params.email);
+            // make sure email is provided
+            if (!req.params.email) {
+                return res.status(400).send({ error: "Email not provided" });
+            }
+            const users = await db.query(
+                `SELECT * FROM profteachcourse PTC, courses C 
+                WHERE PTC.courseID = C.courseID
+                AND PTC.email = '${req.params.email}'`,
+                {
+                    type: QueryTypes.SELECT,
+                    mapToModel: true,
+                }
+            );
+            return res.status(200).send({ users });
+        }
+        catch (err) {
+            console.error(err);
+            return res.status(400).send({ error: err });
+        }
+    }
+);
+
+
 
 
 

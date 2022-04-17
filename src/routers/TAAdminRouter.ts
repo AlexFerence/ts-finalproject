@@ -5,11 +5,12 @@ import Middleware from '../middleware/Middleware';
 import { TAInfoInstance } from '../model/TAInfoModel';
 import TAValidator from '../validator/TAValidator';
 
-const taRouter = express.Router();
+const taAdminRouter = express.Router();
 
-taRouter.post('/ta/add',
+taAdminRouter.post('/taAdmin/add',
     TAValidator.checkCreateTA(),
     Middleware.handleValidationError,
+
     async (req: Request, res: Response) => {
         try {
             console.log("Adding TA...");
@@ -28,17 +29,34 @@ taRouter.post('/ta/add',
     }
 )
 
-// Route to get all the tas
-taRouter.get('/ta/all',
+// Remove TA Route
+taAdminRouter.delete('/taAdmin/delete/:email',
+    async (req: Request, res: Response) => {
+        try {
+            const email = req.params.email;
+            const ta = await TAInfoInstance.findOne({ where: { email: email } })
+            if (!ta) {
+                return res.status(400).send({ error: "TA does not exist" });
+            }
+            await ta.destroy();
+            return res.status(200).send({ message: "TA deleted" });
+        } catch (err) {
+            console.error(err);
+            return res.status(400).send({ error: err });
+        }
+    }
+)
+
+// get all ta admins route
+taAdminRouter.get('/taAdmin/all',
     async (req: Request, res: Response) => {
         try {
             const tas = await db.query(
                 `SELECT T.email as email, U.firstName AS firstname, U.lastName AS lastname,
                 faculty, department, T.firstName AS backupFirstName, T.lastName AS backupLastName
-                FROM taInfo T LEFT JOIN users U ON U.email = T.email`,
+                FROM taAdmin T LEFT JOIN users U ON U.email = T.email`,
                 {
-                    type: QueryTypes.SELECT,
-                    mapToModel: true,
+                    type: QueryTypes.SELECT
                 }
             );
             return res.status(200).send({ tas });
@@ -50,27 +68,7 @@ taRouter.get('/ta/all',
     }
 )
 
-taRouter.delete('/ta/delete/:email',
-    async (req: Request, res: Response) => {
-        try {
-            const email = req.params.email;
-            const ta = await TAInfoInstance.findOne({ where: { email: email } })
-            if (!ta) {
-                return res.status(400).send({ error: "TA does not exist" });
-            }
-            const deletedTA = await ta.destroy();
-            return res.status(200).send({ deletedTA, msg: "Succesfully deleted TA" });
-        }
-        catch (err) {
-            console.error(err);
-            return res.status(500).send({ msg: "fail to delete", route: "/ta/delete" })
-        }
-    }
-)
-
-export default taRouter;
 
 
 
-
-
+export default taAdminRouter;
