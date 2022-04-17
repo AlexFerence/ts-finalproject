@@ -6,7 +6,7 @@ export interface TAInfoModel {
     faculty: string,
     department: string,
     firstName: string,
-    lastName: string,
+    lastName: string
 }
 
 export class TAInfoInstance extends Model<TAInfoModel> { }

@@ -43,6 +43,8 @@ courseRouter.get("/course/all",
     }
 );
 
+// Route to get all the tas of a course
+
 export default courseRouter;
 
 

@@ -3,6 +3,7 @@ import { QueryTypes } from 'sequelize';
 import db from '../config/database.config';
 import Middleware from '../middleware/Middleware';
 import { TAInfoInstance } from '../model/TAInfoModel';
+import { TAofCourseInstance } from '../model/TAofCourseModel';
 import TAValidator from '../validator/TAValidator';
 
 const taRouter = express.Router();
@@ -67,6 +68,34 @@ taRouter.delete('/ta/delete/:email',
         }
     }
 )
+
+taRouter.post('/ta/assignToCourse',
+    TAValidator.checkAssignTA(),
+    Middleware.handleValidationError,
+    async (req: Request, res: Response) => {
+        try {
+            const email = req.body.email;
+            const courseID = req.body.courseID;
+
+            const assignRes = await TAofCourseInstance.create({
+                email,
+                courseID
+            });
+            if (assignRes) {
+                return res.status(200).send({ msg: "Successfully assigned TA to course" });
+            }
+            else {
+                return res.status(400).send({ msg: "Failed to assign TA to course" });
+            }
+        } catch (err) {
+            console.error(err);
+            return res.status(400).send({ error: err });
+        }
+    }
+)
+
+// Route to get all courses of a TA
+
 
 export default taRouter;
 

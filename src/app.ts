@@ -28,12 +28,14 @@ app.use(taRouter);
 app.use(taAdminRouter);
 
 app.get("/", async (req: Request, res: Response) => {
+    const tableName = "courses"
+
     try {
-        const dropRes = await db.query(`DROP TABLE profteachcourse`);
-        if (dropRes) {
-            console.log("Dropped profteachcourse table");
-            return res.send("success");
-        }
+        // const dropRes = await db.query(`DROP TABLE ${tableName}`);
+        // if (dropRes) {
+        //     console.log(`Dropped ${tableName} table`);
+        //     return res.send({ message: `Dropped ${tableName} table` });
+        // }
         return res.send("fail");
     }
     catch (err) {

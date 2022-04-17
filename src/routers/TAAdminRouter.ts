@@ -2,19 +2,20 @@ import express, { Request, Response } from 'express';
 import { QueryTypes } from 'sequelize';
 import db from '../config/database.config';
 import Middleware from '../middleware/Middleware';
+import { TAAdminInstance } from '../model/TAAdminModel';
 import { TAInfoInstance } from '../model/TAInfoModel';
 import TAValidator from '../validator/TAValidator';
 
 const taAdminRouter = express.Router();
 
+// Add taAdmin route
 taAdminRouter.post('/taAdmin/add',
     TAValidator.checkCreateTA(),
     Middleware.handleValidationError,
-
     async (req: Request, res: Response) => {
         try {
             console.log("Adding TA...");
-            const newTA = await TAInfoInstance.create({
+            const newTA = await TAAdminInstance.create({
                 email: req.body.email,
                 faculty: req.body.faculty,
                 department: req.body.department,
@@ -34,7 +35,7 @@ taAdminRouter.delete('/taAdmin/delete/:email',
     async (req: Request, res: Response) => {
         try {
             const email = req.params.email;
-            const ta = await TAInfoInstance.findOne({ where: { email: email } })
+            const ta = await TAAdminInstance.findOne({ where: { email: email } })
             if (!ta) {
                 return res.status(400).send({ error: "TA does not exist" });
             }

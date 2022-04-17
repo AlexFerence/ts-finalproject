@@ -12,7 +12,7 @@ class TAValidator {
     }
     checkAssignTA() {
         return [
-            body('taEmail').isEmail().withMessage('Email is not valid'),
+            body('email').isEmail().withMessage('Email is not valid'),
             body('courseID').isUUID(4).withMessage('Course ID is not valid'),
         ]
     }

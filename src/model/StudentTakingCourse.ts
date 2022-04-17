@@ -4,8 +4,6 @@ import db from "../config/database.config";
 export interface StudentTakingCourseType {
     studentEmail: string,
     courseID: string,
-    term: string,
-    year: string,
 }
 
 export class StudentTakingCourseInstance extends Model<StudentTakingCourseType> { }
@@ -23,16 +21,6 @@ StudentTakingCourseInstance.init({
         unique: false,
         primaryKey: true
     },
-    term: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: false
-    },
-    year: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: false
-    }
 }, {
     sequelize: db,
     tableName: 'studenttakingcourse'
