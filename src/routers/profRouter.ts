@@ -142,6 +142,37 @@ profRouter.get("/prof/courses/:email",
     }
 );
 
+// Update TA responsibilities for a course (office hours time & location, duties)
+profRouter.post("/prof/updateTADuties",
+    ProfValidator.checkAssignTADuties(),
+    Middleware.handleValidationError,
+    async (req: Request, res: Response) => {
+        try {
+            const email = req.body.email;
+            const courseID = req.body.courseID;
+            const officeHoursTime = req.body.officeHoursTime;
+            const officeHoursLocation = req.body.officeHoursLocation;
+            const duties = req.body.duties;
+
+            console.log("Updating TA duties...");
+            const updatingDoc = await db.query(
+                `UPDATE taOfCourse SET officeHoursTime = '${officeHoursTime}', 
+                officeHoursLocation = '${officeHoursLocation}', 
+                duties = '${duties}'
+                WHERE email = '${email}' AND courseID = '${courseID}'`,
+                {
+                    type: QueryTypes.UPDATE
+                }
+            );
+            return res.status(200).send({ message: "TA duties updated" });
+        }
+        catch (err) {
+            console.error(err);
+            return res.status(400).send({ error: err });
+        }
+    }
+);
+
 
 
 

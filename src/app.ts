@@ -12,13 +12,17 @@ import taAdminRouter from './routers/TAAdminRouter';
 const app = express();
 const port = 3000;
 
+// Basic express setup
 app.use(cors());
 app.use(express.json());
 
+// Sequelize connection to database
 db.sync().then(() => {
     console.log("Connected to db");
 })
 
+
+// Import the routers and use in express app
 app.use(authRouter);
 app.use(profRouter);
 app.use(studentRouter);
@@ -28,16 +32,15 @@ app.use(taRouter);
 app.use(taAdminRouter);
 
 app.get("/", async (req: Request, res: Response) => {
-    const tableName = "taRating"
-
     try {
         // const dropRes = await db.query(`SELECT ratedByUuid, courseID, taRatedEmail FROM taRating TR`);
-        const dropRes = await db.query(`SELECT * FROM taRating`);
+        const q = await db.query(`SELECT * FROM taOfCourse`, { type: QueryTypes.SELECT });
 
-        if (dropRes) {
-            console.log(`Dropped ${tableName} table`);
-            return res.send({ message: `Dropped ${tableName} table`, dropRes });
+        if (q) {
+            return res.send({ q });
         }
+
+
         return res.send("fail");
     }
     catch (err) {

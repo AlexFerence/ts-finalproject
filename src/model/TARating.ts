@@ -1,7 +1,7 @@
 import { Model, DataTypes } from "sequelize";
 import db from "../config/database.config";
 
-export interface TAInfoModel {
+export interface TaRatingModel {
     ratedByUuid: string,
     taRatedEmail: string,
     courseID: string,
@@ -9,7 +9,7 @@ export interface TAInfoModel {
     comment: string,
 }
 
-export class TARatingInstance extends Model<TAInfoModel> { }
+export class TARatingInstance extends Model<TaRatingModel> { }
 
 TARatingInstance.init({
     ratedByUuid: {

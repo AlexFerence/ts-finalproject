@@ -15,6 +15,12 @@ class CourseValidator {
             body('courseID').isLength({ min: 1 }).withMessage('Email is required'),
         ]
     }
+    checkGetReviewsForTAofCourse() {
+        return [
+            body('email').isLength({ min: 1 }).withMessage('Email is required'),
+            body('courseID').isLength({ min: 1 }).withMessage('Course ID is required'),
+        ]
+    }
 }
 
 export default new CourseValidator();

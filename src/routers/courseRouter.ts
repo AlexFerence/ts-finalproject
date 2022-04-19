@@ -127,4 +127,27 @@ courseRouter.post('/course/tas/alreadyreviewedbyuser',
     }
 )
 
+// Get all Reviews of a TA for a course
+courseRouter.get('/course/tas/reviews',
+    CourseValidator.checkGetReviewsForTAofCourse(),
+    Middleware.handleValidationError,
+    async (req: Request, res: Response) => {
+        try {
+            console.log("Getting all reviews for a TA of a course...");
+            const courseID = req.body.courseID;
+            const email = req.body.email;
+
+            const reviewsRes = await db.query(
+                `SELECT * FROM taRating TR WHERE TR.courseID = '${courseID}' AND TR.taRatedEmail = '${email}'`,
+                { type: QueryTypes.SELECT });
+
+            return res.send({ reviews: reviewsRes });
+
+        } catch (err) {
+            console.error(err);
+            return res.status(400).send({ error: err });
+        }
+    }
+)
+
 export default courseRouter;

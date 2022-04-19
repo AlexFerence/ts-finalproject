@@ -79,7 +79,10 @@ taRouter.post('/ta/assignToCourse',
             const courseID = req.body.courseID;
             const assignRes = await TAofCourseInstance.create({
                 email,
-                courseID
+                courseID,
+                officeHoursTime: "not assigned",
+                officeHoursLocation: "not assigned",
+                duties: "not assigned"
             });
             if (assignRes) {
                 return res.status(200).send({ msg: "Successfully assigned TA to course" });
