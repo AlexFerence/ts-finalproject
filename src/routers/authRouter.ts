@@ -148,7 +148,6 @@ authRouter.post("/login",
 
             // TA Admin
 
-            // TA
 
             // Check and retrieve sysop info
             const sysopInfo = await SysopInfoInstance.findOne({ where: { uuid: userDoc.uuid } });

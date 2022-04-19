@@ -2,17 +2,17 @@ import { Model, DataTypes } from "sequelize";
 import db from "../config/database.config";
 
 export interface StudentTakingCourseType {
-    studentEmail: string,
+    uuid: string,
     courseID: string,
 }
 
 export class StudentTakingCourseInstance extends Model<StudentTakingCourseType> { }
 
 StudentTakingCourseInstance.init({
-    studentEmail: {
+    uuid: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
+        unique: false,
         primaryKey: true
     },
     courseID: {

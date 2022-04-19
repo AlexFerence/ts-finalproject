@@ -16,6 +16,13 @@ class TAValidator {
             body('courseID').isUUID(4).withMessage('Course ID is not valid'),
         ]
     }
+    getRatingsForTAandCourse() {
+        return [
+            body('email').isEmail().withMessage('Email is not valid'),
+            body('courseID').isUUID(4).withMessage('Course ID is not valid'),
+        ]
+    }
+
 }
 
 export default new TAValidator();

@@ -9,6 +9,12 @@ class CourseValidator {
             body('courseName').isLength({ min: 1 }).withMessage('Course name is required')
         ]
     }
+    checkAlreadySubmittedReviews() {
+        return [
+            body('uuid').isLength({ min: 1 }).withMessage('Course ID is required'),
+            body('courseID').isLength({ min: 1 }).withMessage('Email is required'),
+        ]
+    }
 }
 
 export default new CourseValidator();

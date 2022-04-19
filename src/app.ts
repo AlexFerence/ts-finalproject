@@ -28,23 +28,25 @@ app.use(taRouter);
 app.use(taAdminRouter);
 
 app.get("/", async (req: Request, res: Response) => {
-    const tableName = "courses"
+    const tableName = "taRating"
 
     try {
-        // const dropRes = await db.query(`DROP TABLE ${tableName}`);
-        // if (dropRes) {
-        //     console.log(`Dropped ${tableName} table`);
-        //     return res.send({ message: `Dropped ${tableName} table` });
-        // }
+        // const dropRes = await db.query(`SELECT ratedByUuid, courseID, taRatedEmail FROM taRating TR`);
+        const dropRes = await db.query(`SELECT * FROM taRating`);
+
+        if (dropRes) {
+            console.log(`Dropped ${tableName} table`);
+            return res.send({ message: `Dropped ${tableName} table`, dropRes });
+        }
         return res.send("fail");
     }
     catch (err) {
         console.error(err);
         return res.status(400).send({ error: err });
     }
-
-
 })
+
+
 
 app.listen(port, () => {
     console.log('App running on port ' + port)
