@@ -106,6 +106,7 @@ courseRouter.get('/course/tas/reviewedByUser/:courseID/:uuid',
     }
 )
 
+// Get courses that are already reviewed by provided user
 courseRouter.post('/course/tas/alreadyreviewedbyuser',
     CourseValidator.checkAlreadySubmittedReviews(),
     Middleware.handleValidationError,

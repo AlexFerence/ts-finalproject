@@ -98,7 +98,7 @@ taRouter.post('/ta/assignToCourse',
 )
 
 // Route to unassign a ta from a course
-taRouter.post('/ta/unassignFromCourse',
+taRouter.post('https://winter2022-comp307-group8.cs.mcgill.ca/ta/unassignFromCourse',
     TAValidator.checkAssignTA(),
     Middleware.handleValidationError,
     async (req: Request, res: Response) => {
@@ -129,6 +129,9 @@ taRouter.get('/ta/courses/:email',
             const courses = await db.query(
                 `SELECT * FROM courses C, taOFcourse T
                 WHERE T.email = '${email}' AND T.courseID = C.courseID`,
+                {
+                    type: QueryTypes.SELECT,
+                }
             );
             if (courses) {
                 return res.status(200).send({ courses });

@@ -124,16 +124,15 @@ profRouter.get("/prof/courses/:email",
             if (!req.params.email) {
                 return res.status(400).send({ error: "Email not provided" });
             }
-            const users = await db.query(
+            const courses = await db.query(
                 `SELECT * FROM profteachcourse PTC, courses C 
                 WHERE PTC.courseID = C.courseID
                 AND PTC.email = '${req.params.email}'`,
                 {
-                    type: QueryTypes.SELECT,
-                    mapToModel: true,
+                    type: QueryTypes.SELECT
                 }
             );
-            return res.status(200).send({ users });
+            return res.status(200).send({ courses });
         }
         catch (err) {
             console.error(err);
